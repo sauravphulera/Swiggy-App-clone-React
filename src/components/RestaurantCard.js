@@ -2,7 +2,7 @@ import { UTILS } from '../constants/constants';
 
 
 const RestaurantCart = ({ resData }) => {
-	const { name, cuisines, avgRating, costForTwoString, deliveryTime } = resData
+	const { name, cuisines, avgRating, costForTwoString, sla } = resData
 	return (
 		//resData.cloudinaryImageId
 		<div className="res-card">
@@ -11,7 +11,7 @@ const RestaurantCart = ({ resData }) => {
 			<div className="res-details">{cuisines.join(", ")}</div>
 			<div className="res-details">{avgRating} Stars</div>
 			<div className="res-details">{costForTwoString}</div>
-			<div className="res-details">{deliveryTime} minutes</div>
+			<div className="res-details">{sla?.deliveryTime} minutes</div>
 		</div>
 	)
 }

@@ -1,8 +1,9 @@
 #### Namaste React
+
 # Episode wise dev and notes of Namaste react projects
 
-
 # parcel
+
 - DEv Build
 - Local Server
 - HMR -> Hot module replacements
@@ -19,3 +20,7 @@
 - Error Handling
 - HTTPs
 - Tree Shaking
+
+# Infinite Loader
+
+Implement a infinite loader for restaurants

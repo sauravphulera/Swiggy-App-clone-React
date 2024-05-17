@@ -90,7 +90,7 @@
     border-radius: 1rem;
     width: 266px;
     height: 167px;
-    background-color: lightgray;
+    background-color: rgb(236, 236, 236);
 }
 
 .shimmer-ui-container {
@@ -108,7 +108,7 @@
     padding: 8px;
     height: 22px;
     margin: 8px;
-    background-color: lightgray;
+    background-color: rgb(236, 236, 236);
 }
 
 .mr8 {
@@ -138,4 +138,12 @@
 
 .flex-wrap {
     flex-wrap: wrap;
+}
+
+.direction-column {
+    flex-direction: column;
+}
+
+li {
+    outline: none;
 }

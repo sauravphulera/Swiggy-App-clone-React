@@ -2,6 +2,7 @@
 import RestaurantCart from "./RestaurantCard";
 import { useEffect, useState } from "react";
 import Shimmer from "./shimmer";
+import { Link } from "react-router-dom";
 
 const Body = () => {
 	let [allRestaurants, setAllRestaurants] = useState([]);
@@ -14,7 +15,17 @@ const Body = () => {
 	}, [])
 
 	const fetchData = async () => {
-		const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=19.9615398&lng=79.2961468&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING");
+		let data;
+		try {
+			data = await fetch('https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.65200&lng=77.16630&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING', {
+				headers: {
+					'Accept-Encoding': 'identity',
+					//'x-cors-api-key': 'temp_2e99df148ba0810fc959505b52ae3cdf'
+				}
+			});
+		} catch (e) {
+			console.log(e)
+		}
 		const res = await data.json();
 		const restaurants = res?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
 		console.log(restaurants);
@@ -22,7 +33,16 @@ const Body = () => {
 		setAllRestaurants([...restaurants]);
 	}
 
-	return listOfRestaurants.length === 0 ? (<Shimmer />) : (
+	const handleSearch = (event) => {
+		if (event.key == 'Enter') {
+			const filteredRestaurant = allRestaurants.filter((res) => {
+				return res.info.name.toLowerCase().includes(searchTxt.toLocaleLowerCase());
+			});
+			setListOfRestaurants(filteredRestaurant);
+		}
+	}
+
+	return allRestaurants.length === 0 ? (<Shimmer />) : (
 		<div className="body">
 			<div className="flex align-center">
 				<div className="filter">
@@ -39,11 +59,15 @@ const Body = () => {
 					}}>Show All</button>
 				</div>
 				<div className="search">
-					<input className="search-box" type="text" name="search" value={searchTxt}></input>
+					<input className="search-box" type="text" name="search" defaultValue={searchTxt} onKeyDown={handleSearch} onChange={(e) => setSearchTxt(e.target.value)}></input>
 				</div>
 			</div>
 			<div className="res-container">
-				{listOfRestaurants.map((resObj, index) => <RestaurantCart key={`restaurent-${index}`} resData={resObj.info} />)}
+				{listOfRestaurants.map((resObj, index) =>
+					<Link key={resObj.info.id} to={'/restaurant/' + resObj.info.id}>
+						<RestaurantCart key={`restaurent-${index}`} resData={resObj.info} />
+					</Link>
+				)}
 			</div>
 		</div>
 	)
