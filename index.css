@@ -1,3 +1,141 @@
 #heading {
     color: red;
 }
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid black;
+}
+
+.logo {
+    width: 130px;
+    height: 90px;
+}
+
+.nav-items {
+    padding: 0px 24px;
+}
+
+.nav-items>ul {
+    display: flex;
+    list-style-type: none;
+}
+
+.nav-items>ul>li {
+    padding: 8px;
+    margin: 8px;
+}
+
+.w100 {
+    width: 100%;
+}
+
+.res-card {
+
+    cursor: pointer;
+    /*background-color: #ebd4bd;*/
+    border-radius: 1rem;
+    width: fit-content;
+    padding: 16px;
+    font-family: sans-serif;
+    color: #110000;
+}
+
+.search {
+    padding: 8px;
+}
+
+.body {
+    padding: 24px 5%;
+}
+
+.res-logo {
+    border-radius: 1rem;
+    width: 266px;
+    height: 167px;
+}
+
+.res-card:hover {
+    transform: scale(0.95);
+    transition: all .2s;
+    outline: 1px #770606 solid;
+}
+
+.res-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+}
+
+.res-details {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    width: 266px;
+}
+
+
+.shimmer-cards {
+    cursor: pointer;
+    padding: 16px;
+    /*background-color: #ebd4bd;*/
+    border-radius: 1rem;
+    /*height: 317px;
+    width: 298px;*/
+
+}
+
+.shimmer-res-logo {
+    border-radius: 1rem;
+    width: 266px;
+    height: 167px;
+    background-color: lightgray;
+}
+
+.shimmer-ui-container {
+    padding: 24px 5%;
+
+}
+
+.shimmer-card-container {
+    gap: 24px;
+    padding: 8px;
+}
+
+.shimmer-btn {
+    width: 200px;
+    padding: 8px;
+    height: 22px;
+    margin: 8px;
+    background-color: lightgray;
+}
+
+.mr8 {
+    margin-right: 8px;
+}
+
+/*flex classes*/
+.flex {
+    display: flex;
+}
+
+.justify-center {
+    justify-content: center;
+}
+
+.space-around {
+    justify-content: space-around;
+}
+
+.justify-between {
+    justify-content: space-between;
+}
+
+.align-center {
+    align-items: center;
+}
+
+.flex-wrap {
+    flex-wrap: wrap;
+}
