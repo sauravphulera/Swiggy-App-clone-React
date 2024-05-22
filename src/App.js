@@ -1,12 +1,13 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
+import React, { lazy, Suspense } from "react";
 import HeaderComponent from "./components/Header";
+import ReactDOM from "react-dom"
 import Body from "./components/Body";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import AboutUs from "./components/About";
 import ContactUs from "./components/Contact";
 import ErrorPage from "./components/Error";
 import RestaurantMenu from "./components/ResutaurantMenu";
+import Shimmer from "./components/shimmer";
 
 // JSX is not html in js(JSX transpiles before reaching js engine and this is done by parcer(module bundler))
 
@@ -18,6 +19,8 @@ const AppLayout = () => {
 		</div>
 	)
 }
+
+const Grocery = lazy(() => import("./components/Grocery"));
 
 //routing config
 const appRouter = createBrowserRouter([
@@ -37,6 +40,10 @@ const appRouter = createBrowserRouter([
 			{
 				path: "/contact",
 				element: <ContactUs />
+			},
+			{
+				path: "/grocery",
+				element: <Suspense fallback={< Shimmer />} ><Grocery /></Suspense>
 			},
 			{
 				path: "/restaurant/:resId",

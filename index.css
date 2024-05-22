@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 #heading {
     color: red;
 }
@@ -146,4 +150,12 @@
 
 li {
     outline: none;
+}
+
+.fs12 {
+    font-size: 12px;
+}
+
+a {
+    text-decoration: none;
 }
