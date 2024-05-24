@@ -2,7 +2,7 @@
   "name": "namaste-react",
   "version": "1.0.0",
   "description": "",
-  "main": "app.js",
+  "main": "./src/App.js",
   "scripts": {
     "test": "jest",
     "start": "parcel index.html",

@@ -8,15 +8,13 @@ const HeaderComponent = () => {
 
 
 	return (
-		<div className="header">
-			<div className="logo-container">
-				<img className="logo" src={UTILS.logo} />
+		<div className="flex justify-between shadow-md px-4 border-none outline-none">
+			<div className="logo-container flex items-center">
+				<img className="w-24" src={UTILS.logo} />
+				<div className="pl-4 text-ellipsis font-medium">Saurav Phulera <span className="text-xs pl-2">{onlineStatus ? '🟢' : '🔴'}</span></div>
 			</div>
-			<div className="nav-items">
+			<div className="nav-items flex items-center">
 				<ul>
-					<li className="flex align-center fs12">
-						Online Status: {onlineStatus ? '🟢' : '🔴'}
-					</li>
 					<li><Link to="/">Home</Link></li>
 					<li><Link to="/about">About Us</Link></li>
 					<li><Link to="/contact">Contact Us</Link></li>

@@ -16,4 +16,18 @@ const RestaurantCart = ({ resData }) => {
 	)
 }
 
+
+// higher order component
+
+export const withPromotedLabel = (RestaurantCard) => {
+	return (props) => {
+		console.log('in')
+		return (
+			<div>
+				<label>Veg is veg</label>
+				<RestaurantCard {...props} />
+			</div>
+		)
+	}
+}
 export default RestaurantCart;

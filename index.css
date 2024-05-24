@@ -6,11 +6,11 @@
     color: red;
 }
 
-.header {
+/*.header {
     display: flex;
     justify-content: space-between;
     border: 1px solid black;
-}
+}*/
 
 .logo {
     width: 130px;
