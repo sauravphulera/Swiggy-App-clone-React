@@ -1,7 +1,11 @@
+import { useContext } from 'react';
 import { UTILS } from '../constants/constants';
+import UserContext from '../Utils/userContext';
 
 
 const RestaurantCart = ({ resData }) => {
+
+	console.log(useContext(UserContext))
 	const { name, cuisines, avgRating, costForTwoString, sla } = resData
 	return (
 		//resData.cloudinaryImageId
@@ -12,6 +16,7 @@ const RestaurantCart = ({ resData }) => {
 			<div className="res-details">{avgRating} Stars</div>
 			<div className="res-details">{costForTwoString}</div>
 			<div className="res-details">{sla?.deliveryTime} minutes</div>
+			{/*<div className="res-details">{loggedInUser}</div>*/}
 		</div>
 	)
 }
@@ -21,10 +26,14 @@ const RestaurantCart = ({ resData }) => {
 
 export const withPromotedLabel = (RestaurantCard) => {
 	return (props) => {
-		console.log('in')
 		return (
 			<div>
-				<label>Veg is veg</label>
+				<div className='absolute z-50'>
+					<div className='border-green-700 border-2 bg-white p px-2 top-3 left-3 relative'>
+						<div className='text-green-700 font-bold text-sm'>Veg</div>
+					</div>
+				</div>
+
 				<RestaurantCard {...props} />
 			</div>
 		)

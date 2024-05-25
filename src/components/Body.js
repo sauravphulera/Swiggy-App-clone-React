@@ -1,10 +1,11 @@
 // sudy about config driven UI
 import RestaurantCart, { withPromotedLabel } from "./RestaurantCard";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Shimmer from "./shimmer";
 import { Link } from "react-router-dom";
 import { UTILS } from "../constants/constants";
 import useOnlineStatus from "../Utils/useOnlineStatus";
+import UserContext from "../Utils/userContext";
 
 const Body = () => {
 	let [allRestaurants, setAllRestaurants] = useState([]);
@@ -13,7 +14,7 @@ const Body = () => {
 
 	const RestaurantCardPromoted = withPromotedLabel(RestaurantCart);
 
-	console.log('body rendered')
+	const { setUser, loggedInUser } = useContext(UserContext);
 	useEffect(() => {
 		fetchData();
 	}, [])
@@ -70,15 +71,18 @@ const Body = () => {
 						//console.log(resList)
 						setListOfRestaurants(listOfRestaurants)
 					}}>Show All</button>
+
+					{/*<div className="px-4 py-2">*/}
+					<input type="text" className="border-gray border focus:outline-none p-2 ml-2" value={loggedInUser} onChange={(e) => setUser(e.target.value)} />
+					{/*</div>*/}
 				</div>
 
 			</div>
 			<div className="res-container">
 				{listOfRestaurants.map((resObj, index) =>
 					<Link key={resObj.info.id} to={'/restaurant/' + resObj.info.id + '?' + resObj.info.sla.deliveryTime}>
-						{/*{resObj.info.veg ? <RestaurantCardPromoted key={`restaurentVeg-${index}`} resData={resObj.info} /> : <RestaurantCart key={`restaurent-${index}`} resData={resObj.info} />}*/}
+						{resObj.info.veg ? <RestaurantCardPromoted key={`restaurentVeg-${index}`} resData={resObj.info} /> : <RestaurantCart key={`restaurent-${index}`} resData={resObj.info} />}
 						{/*<RestaurantCart key={`restaurent-${index}`} resData={resObj.info} />*/}
-						<RestaurantCardPromoted key={`restaurentVeg-${index}`} resData={resObj.info} />
 					</Link>
 				)}
 			</div>

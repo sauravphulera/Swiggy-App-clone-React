@@ -1,4 +1,4 @@
-import React, { lazy, Suspense } from "react";
+import React, { lazy, Suspense, useState } from "react";
 import HeaderComponent from "./components/Header";
 import ReactDOM from "react-dom/client"
 import Body from "./components/Body";
@@ -8,16 +8,28 @@ import ContactUs from "./components/Contact";
 import ErrorPage from "./components/Error";
 import RestaurantMenu from "./components/ResutaurantMenu";
 import Shimmer from "./components/shimmer";
-//import './styles/tailwind.css';
+import UserContext from "./Utils/userContext";
+import Cart from "./components/Cart";
+import { Provider } from "react-redux";
+import appStore from "./Utils/appStore";
 
 // JSX is not html in js(JSX transpiles before reaching js engine and this is done by parcer(module bundler))
 
 const AppLayout = () => {
+
+	const [user, setUser] = useState('admin')
+
 	return (
-		<div className="app">
-			<HeaderComponent />
-			<Outlet />
-		</div>
+		<Provider store={appStore}>
+			<UserContext.Provider value={{ loggedInUser: user, setUser }}>
+				<div className="app">
+					<HeaderComponent />
+
+					<Outlet />
+				</div>
+			</UserContext.Provider>
+		</Provider>
+
 	)
 }
 
@@ -45,6 +57,10 @@ const appRouter = createBrowserRouter([
 			{
 				path: "/grocery",
 				element: <Suspense fallback={< Shimmer />} ><Grocery /></Suspense>
+			},
+			{
+				path: "/cart",
+				element: <Cart />
 			},
 			{
 				path: "/restaurant/:resId",
